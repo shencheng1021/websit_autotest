@@ -13,6 +13,7 @@ from selenium import webdriver
 
 class BaseUtil(unittest.TestCase):
 
+
     def setUp(self) -> None:
         global driver
         self.driver = webdriver.Chrome()

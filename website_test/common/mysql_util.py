@@ -8,19 +8,19 @@
 """
 import pymysql
 
-class MysqlConnection():
+class MysqlConnection(object):
     '''
     mysql操作类，对mysql数据库进行增删改查
     '''
 
-    def __init__(self):
+    def __init__(self,database):
         self.connection=pymysql.Connect(
             host='172.24.100.2',
             user='root',
             password='!QAZ2wsx1234',
-            port='3306',
-            db='website_sit',
-            charset='utf-8'
+            port=3306,
+            db=database,
+            charset='utf8'
         )
         self.connection.autocommit(True)
         self.cursor=self.connection.cursor()
@@ -75,4 +75,5 @@ class MysqlConnection():
         """
         self.cursor.close()
         self.connection.close()
+
 

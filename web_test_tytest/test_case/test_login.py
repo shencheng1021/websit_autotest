@@ -6,22 +6,39 @@
 @description: test
 @time: 2022/4/13 9:34
 """
-import time
-
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 import unittest
 
-driver=webdriver.Chrome()
-driver.get("https://www.baidu.com/")
-driver.maximize_window()
-driver.find_element(By.ID,"kw").send_keys('砼联数字科技有限公司')
-driver.find_element(By.ID,"su").click()
-time.sleep(5)
-driver.find_element(By.XPATH,"/html/body/div[3]/div[3]/div[1]/div[3]/div[1]/div[1]/div[1]/h3/a").click()
-driver.switch_to.window(driver.window_handles[-1])
-driver.find_element(By.XPATH,"//span[contains(text(),'砼联产品')]").click()
-time.sleep(2)
-driver.find_element(By.XPATH,"//p[@class='menu-name' and contains(text(),'砼联数科')]").click()
+from ddt import ddt, data, unpack
 
-driver.find_element(By.XPATH,"//div[@class='exp-btn']").click()
+from web_test_tytest.common.excel_util import ExcelUtil
+from web_test_tytest.common.logger_util import Logger
+from web_test_tytest.page_base.login_page import LoginPage
+from web_test_tytest.base1.base_util import BaseUtil
+
+mylogger = Logger(logger='TestMyLog').getlog()
+
+
+@ddt
+class TestLogin(BaseUtil):
+
+    @data(*ExcelUtil().excel_read('login_data'))
+    @unpack
+    def test_login_01(self,index,username,checkcode,result):
+        mylogger.info('********登录测试开始,输入用户名：'+str(username)+'输入验证码:'+str(checkcode)+'******')
+        self.driver.implicitly_wait(10)
+        lp=LoginPage(self.driver)
+        lp.slmode_eshop('child',username,checkcode)
+
+        if index == 1:
+            self.assertEqual(lp.check_point_shop(),result)
+        elif index == 2 or index == 3 or index == 4:
+            self.assertEqual(lp.loginfail_check_shop(lp.username_failwarn_loc),result)
+        elif index == 5:
+            self.assertEqual(lp.loginfail_check_shop(lp.checkcode_null_loc),result)
+        else:
+            self.assertEqual(lp.loginfail_check_shop(lp.checkcode_fail_loc),result)
+        mylogger.info('********登录测试结束********')
+
+
+if __name__ == '__main__':
+    unittest.main()

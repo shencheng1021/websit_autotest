@@ -1,0 +1,7 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Fri Sep 01 20:22:57 CST 2023","Fri Sep 01 20:22:58 CST 2023","1422","test_case","test_login_pytest","TestLogin","","","test_login_01[4--230516-\u8bf7\u8f93\u5165\u624b\u673a\u53f7\u7801]",""
+"passed","Fri Sep 01 20:23:09 CST 2023","Fri Sep 01 20:23:11 CST 2023","1450","test_case","test_login_pytest","TestLogin","","","test_login_01[5-13730870086--\u8bf7\u8f93\u5165\u77ed\u4fe1\u9a8c\u8bc1\u7801]",""
+"passed","Fri Sep 01 20:22:44 CST 2023","Fri Sep 01 20:22:46 CST 2023","1454","test_case","test_login_pytest","TestLogin","","","test_login_01[3-1373087008-230516-\u624b\u673a\u53f7\u7801\u683c\u5f0f\u4e0d\u6b63\u786e]",""
+"passed","Fri Sep 01 20:23:21 CST 2023","Fri Sep 01 20:23:23 CST 2023","1519","test_case","test_login_pytest","TestLogin","","","test_login_01[6-13730870086-230515-\u9a8c\u8bc1\u7801\u9519\u8bef,\u8bf7\u68c0\u67e5]",""
+"passed","Fri Sep 01 20:22:18 CST 2023","Fri Sep 01 20:22:20 CST 2023","2207","test_case","test_login_pytest","TestLogin","","","test_login_01[1-13730870086-230516-\u783c\u8054\u6570\u5b57\u79d1\u6280\u6709\u9650\u516c\u53f8]",""
+"passed","Fri Sep 01 20:22:32 CST 2023","Fri Sep 01 20:22:33 CST 2023","1467","test_case","test_login_pytest","TestLogin","","","test_login_01[2-137308700861-230516-\u624b\u673a\u53f7\u7801\u683c\u5f0f\u4e0d\u6b63\u786e]",""

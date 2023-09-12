@@ -6,9 +6,11 @@
 @description: test
 @time: 2022/4/13 9:34
 """
+import os
 import time
 
 from selenium import webdriver
+from selenium.webdriver.support.select import Select
 
 
 class BasePage:
@@ -37,6 +39,13 @@ class BasePage:
     def get_text(self,loc):
         return self.locator_element(loc).text
 
+    def select_value(self,loc,value):
+        s=Select(self.locator_element(loc))
+        s.select_by_value(value)
+
+    def upload_file(self,loc,filepath):
+        relativepath=os.path.dirname(__file__).split("base1")[0]+'/data/'
+        self.send_keys(loc,relativepath+filepath)
 
 
 

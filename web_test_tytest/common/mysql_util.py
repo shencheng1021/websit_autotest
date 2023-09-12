@@ -15,9 +15,9 @@ class MysqlConnection(object):
 
     def __init__(self,database):
         self.connection=pymysql.Connect(
-            host='172.24.100.2',
-            user='root',
-            password='!QAZ2wsx1234',
+            host='172.24.100.68',
+            user='tlsktest',
+            password='tlsk@testadmin123',
             port=3306,
             db=database,
             charset='utf8'
@@ -77,3 +77,7 @@ class MysqlConnection(object):
         self.connection.close()
 
 
+# if __name__ == '__main__':
+#     tjf_mange01 = MysqlConnection('tjf_manage01')
+#     tjf_mange01.Operate("DELETE  FROM `tjf_manage01`.`t_business_identify`  WHERE `busi_lice_no`='91130609MABN36NQXR'")
+#     tjf_mange01.Operate("DELETE  FROM `tjf_manage01`.`t_trader`  WHERE `name`='河北恩帅贸易有限公司'")

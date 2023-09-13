@@ -11,6 +11,7 @@ import time
 from selenium.webdriver.common.by import By
 
 from web_test_tytest.base1.base_page import BasePage
+from web_test_tytest.common.mysql_util import MysqlConnection
 
 
 class AuthBage(BasePage):
@@ -68,6 +69,13 @@ class AuthBage(BasePage):
     #定位已认证检查点
     ahth_success_loc=(By.XPATH,"//div[@class='el-result__title']/p")
 
+    #定位重复认证提示
+    failtips_loc_=(By.XPATH,"//div[@class='el-message-box__message']/p")
+
+    #定位重复认证提示确认按钮
+    failtips_submmit_loc=(By.XPATH,"//div[@class='el-message-box__btns']/button/span")
+
+
 
 
     #定义完善企业信息
@@ -115,10 +123,18 @@ class AuthBage(BasePage):
     def goto_auth_shop(self):
         self.click(AuthBage.merchants_center_loc)
         self.click(AuthBage.enterprise_management_loc)
+        time.sleep(3)
 
     #检查是否实名认证成功
     def check_point(self):
         expected=self.get_text(AuthBage.ahth_success_loc)
         return expected
+
+    #检查是否出现重复认证提示
+    def check_point_2(self):
+        failtips=self.get_text(AuthBage.failtips_loc_)
+        return failtips
+
+
 
 

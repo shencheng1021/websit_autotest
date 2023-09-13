@@ -47,5 +47,25 @@ class BasePage:
         relativepath=os.path.dirname(__file__).split("base1")[0]+'/data/'
         self.send_keys(loc,relativepath+filepath)
 
+    #定义弹窗确认的关键字
+    def alert_accept(self):
+        alert=self.driver.switch_to.alert
+        alert.accept()
+
+    # 定义弹窗取消的关键字
+    def alert_dismiss(self):
+        alert=self.driver.switch_to.alert
+        alert.dismiss()
+
+    # 定义获取弹窗文本的关键字
+    def alert_text(self):
+        alert = self.driver.switch_to.alert
+        return alert.text
+
+    def alert_send_keys(self,key):
+        alert = self.driver.switch_to.alert
+        alert.send_keys(key)
+
+
 
 

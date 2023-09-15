@@ -10,8 +10,14 @@ import time
 import unittest
 from selenium import webdriver
 
+from web_test_tytest.common.logger_util import Logger
+
+
 
 class BaseUtil(unittest.TestCase):
+
+    mylogger = Logger(logger='TestMyLog').getlog()
+
     def setUp(self) -> None:
         global driver
         self.driver = webdriver.Chrome()

@@ -21,11 +21,13 @@ class LoginPage(BasePage):
     password_loc=(By.XPATH, "//div[@class='c-phonecode-input']/div/input")
     checkbox_loc=(By.XPATH, "//span[@class='el-checkbox__inner']")
     loginbutton_loc=(By.XPATH, "//div[@class='el-tabs__content']/button")
-    organization_loc=(By.XPATH,"//input[@type='text']")
+    organization_loc=(By.XPATH,"//div[@class='per-top']/span")
     organization_01_loc=(By.XPATH,"//span[contains(text(),'砼联数字科技有限公司')]")
     username_failwarn_loc=(By.XPATH,"//form[@class ='el-form login-form-body']/div[1]/div/div[2]")
     checkcode_fail_loc=(By.XPATH,"//p[@class='el-message__content']")
     checkcode_null_loc = (By.XPATH, "//form[@class ='el-form login-form-body']/div[3]/div/div[2]")
+
+    merchants_center_loc=(By.XPATH,"//div[@class='tag-inside']/ul[6]/li")
 
 
 
@@ -40,11 +42,15 @@ class LoginPage(BasePage):
         self.click(LoginPage.checkbox_loc)
         self.click(LoginPage.loginbutton_loc)
 
+    def goto_merchants_center(self):
+        self.quit_iframe()
+        self.click(LoginPage.merchants_center_loc)
+        time.sleep(3)
+
+
     #登录成功的检查点动作
     def check_point_shop(self):
-        self.quit_iframe()
-        self.click(LoginPage.organization_loc)
-        return self.get_text(LoginPage.organization_01_loc)
+        return self.get_text(LoginPage.organization_loc)
 
     #登录失败的检查点动作
     def loginfail_check_shop(self,loc):

@@ -6,6 +6,7 @@
 @description: test
 @time: 2022/4/13 9:34
 """
+import time
 import unittest
 
 from ddt import ddt, data, unpack
@@ -15,7 +16,7 @@ from web_test_tytest.common.logger_util import Logger
 from web_test_tytest.page_base.login_page import LoginPage
 from web_test_tytest.base1.base_util import BaseUtil
 
-mylogger = Logger(logger='TestMyLog').getlog()
+
 
 
 @ddt
@@ -24,12 +25,13 @@ class TestLogin(BaseUtil):
     @data(*ExcelUtil().excel_read('login_data'))
     @unpack
     def test_login_01(self,index,username,checkcode,result):
-        mylogger.info('********登录测试开始,输入用户名：'+str(username)+'输入验证码:'+str(checkcode)+'******')
+        self.mylogger.info('********登录测试开始,输入用户名：'+str(username)+'输入验证码:'+str(checkcode)+'******')
         self.driver.implicitly_wait(10)
         lp=LoginPage(self.driver)
         lp.slmode_eshop('child',username,checkcode)
 
         if index == 1:
+            lp.goto_merchants_center()
             self.assertEqual(lp.check_point_shop(),result)
         elif index == 2 or index == 3 or index == 4:
             self.assertEqual(lp.loginfail_check_shop(lp.username_failwarn_loc),result)
@@ -37,7 +39,7 @@ class TestLogin(BaseUtil):
             self.assertEqual(lp.loginfail_check_shop(lp.checkcode_null_loc),result)
         else:
             self.assertEqual(lp.loginfail_check_shop(lp.checkcode_fail_loc),result)
-        mylogger.info('********登录测试结束********')
+        self.mylogger.info('********登录测试结束********')
 
 
 if __name__ == '__main__':
